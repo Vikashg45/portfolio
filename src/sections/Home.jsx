@@ -1,7 +1,24 @@
 import { useState, useMemo, useEffect } from "react";
 import ParticlesBackground from "../components/ParticlesBackground";
 import { motion } from "framer-motion";
+import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import avator from '../assets/avator.png'
 
+const socials = [
+    { Icon: FaXTwitter, label: "X", href: "https:" },
+    { Icon: FaLinkedin, label: "LinkedIn", href: "https:" },
+    { Icon: FaGithub, label: "Github", href: "https://github.com/Vikashg45/" }
+]
+
+const glowVariants = {
+    initial: { scale: 1, y: 0, filter: "drop-shadow(0 0 0 rgba(0,0,0,0))" },
+    hover: {
+        scale: 1.2, y: -3,
+        filter: "drop-shadow(0 0 8px rgba(13,88,204,0.9)) drop-shadow(0 0 18px rgba(16,185,129,0.8))",
+        transition: { type: "spring", stiffness: 300, damping: 15 }
+    },
+    tap: { scale: 0.95, y: 0, transition: { duration: 0.08 } }
+}
 
 export default function Home() {
 
@@ -73,14 +90,78 @@ export default function Home() {
                             </span>
                         </motion.div>
 
-                        <motion.h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text  bg-gradient-to-r from-[#1cd8d2] via-[#00bf8f] to-[#302b63] drop-shadow-lg">
-                            Hello,I'm
+                        <motion.h1 className="text-4xl sm:text-5xl md:text-6xl 
+                                                lg:text-7xl font-bold 
+                                                text-transparent bg-clip-text
+                                                 bg-gradient-to-r from-[#1cd8d2] via-[#00bf8f] to-[#302b63]
+                                                  drop-shadow-lg"
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1 }}
+                        >
+                            Hello, I'm
                             <br />
                             <span className="text-white font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl lg:whitespace-nowrap">
                                 Vikash Gupta
                             </span>
                         </motion.h1>
+                        <motion.p className="mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4, duration: 0.8 }}>
+                            Turning complex problems into efficient, scalable, and lightning-fast web solutions powered by modern technologies.
+                        </motion.p>
+
+                        <motion.div className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.8, duration: 0.8 }}>
+                            <a href="#project"
+                                className="px-6 py-3 rounded-full font-medium text-lg text-white bg-gradient-to-r from-[#1cd8d2] via-[#00bf8f] to-[#302b63]
+                            shadow-lg hover:scale-105 transition-all">View My Work</a>
+                            <a href="/Resume.docx"
+                                download
+                                className="px-6 py-3 rounded-full text-lg font-medium text-black bg-white hover:bg-gray-200 shadow-lg hover:scale-105 transition-all ">My Resume</a>
+                        </motion.div>
+
+                        <div className="mt-10 flex gap-5 text-2xl md:text-3xl justify-center lg:justify-start">
+                            {socials.map(({ Icon, label, href }) => (
+                                <motion.a
+                                    href={href}
+                                    key={label}
+                                    target="_blank"
+                                    aria-label={label}
+                                    rel="noopener noreferrer"
+                                    variants={glowVariants}
+                                    initial="initial"
+                                    whileHover="hover"
+                                    whileTap="tap"
+                                    className="text-gray-300">
+                                    <Icon />
+
+                                </motion.a>
+                            ))}
+                        </div>
+
                     </div>
+                </div>
+                <div className="relative hidden lg:block">
+                    <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none"
+                        style={{
+                            right: "10px", width: "min(22vw,410px)", height: "min(40vw,760px)", borderRadius: "50%",
+                            filter: "blur(38px)", opacity: 0.32,
+                            background: "conic-gradient(from 0deg,#00bf8f,#302b63,#1cd862)"
+                        }}
+                    />
+                    <motion.img src={avator} alt="gaurav gupta" className="absolute top-1/2 -translate-y-1/2 object-contain select-none pointer-events-none"
+                        style={{
+                            right: "-30px", width: "min(45vw,780px)", maxHeight: "90vh"
+                        }}
+                        initial={{ opacity: 0, y: 40, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ delay: 0.2, duration: 0.8 }}>
+
+                    </motion.img>
                 </div>
             </div>
 

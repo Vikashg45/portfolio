@@ -67,7 +67,7 @@ export default function Navbar() {
   ${visible ? "translate-y-0" : "-translate-y-full"}`}
             >
                 <div className="flex items-center space-x-2">
-                    <img src={Logo} alt="logo" className="w-20 h-25 object-contain" />
+                    <img src={Logo} alt="logo" className="w-20 h-15 object-contain" />
                 </div>
 
                 <div className="block lg:absolute lg:left-1/2 lg:transform lg:translate-x-1/2">
