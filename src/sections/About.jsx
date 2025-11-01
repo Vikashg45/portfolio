@@ -1,11 +1,98 @@
-import React from 'react'
+import { motion } from "framer-motion";
+import V from "../assets/V.jpg"
 
-const About = () => {
+export default function About() {
+
+    const stats = [
+        { label: "Experiance", value: "2+ Years" },
+        { label: "Speciality", value: "Full Stack" },
+        { label: "Focus", value: "Performance & UX" },
+
+    ]
+
+    const glows = ["-top-10 -left-10 w-[360px] h-[360px] opacity-30 blur-[120px]",
+        "bottom-0 right-10 w-[420px] h-[420px] opacity-15 blur-[140px] delay-300",
+        "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] blur-[100px] opacity-10"
+    ];
     return (
-        <div class='w-full h-screen'>
-            About
-        </div>
+        <section className="min-h-screen w-full flex items-center justify-center relative bg-black text-white overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none">
+                {glows.map((glow, index) => (
+                    <div key={index} className={`absolute rounded-full bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2] animate-pulse ${glow}`} />
+                ))}
+            </div>
+
+            <div className="relative z-10 max-w-6xl w-full mx-auto px-6 md:px-10 lg:px-12 py-20 flex flex-col gap-12">
+                <motion.div className="flex flex-col md:flex-row items-center md:items-stretch gap-8"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true, amount: 0.4 }}>
+
+                    <motion.div className="relative w-[160px] has-[160px] md:w-[200px] 
+                                            md:h-[200px] flex-shrink-0 rounded-xl 
+                                            overflow-hidden 
+                                            bg-gradient-to-br from-[#1cd8d2]/20 to-[#302b63]/20 
+                                            border  border-[#1cd8d2]/25 shadow-lg"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 200, damping: 18 }}>
+                        <img src={V} alt="About Me" className="absolute inset-0" />
+                    </motion.div>
+
+                    <div className="flex flex-col justify-center text-center md:text-left">
+                        <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent 
+                                        bg-gradient-to-r from-[#1cd8d2] via-[#00bf8f] to-[#1cd8d2]"
+                        >
+                            Vikash Gupta
+                        </h2>
+                        <p className="mt-2 text-lg sm:text-xl text-white/90 font-semibold">
+                            Full Stack Developer
+                        </p>
+                        <p className="mt-4 text-gray-300 leading-relaxed
+                         text-base sm:text-lg max-w-2xl md:max-w-3xl">I build a scalable,modern application with strong focus on clean architecture,
+                            delightful UX, and performance. My tookit spans Java,React,Anguler,C#,TypeScript,
+                            Tailwind CSS and RestFulAPI-bringing ideas to life from concept to production with
+                            robust APIs and smooth interface.
+                        </p>
+
+                        <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-xl">
+                            {stats.map((item, index) => (
+                                <motion.div key={index} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-center"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.05 * index, duration: 0.4 }}
+                                    viewport={{ once: true, amount: 0.3 }} >
+
+                                    <div className="text-sm text-gray-400">{item.label}</div>
+                                    <div className="text-base font-semibold">{item.value}</div>
+
+
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+                            <a href="#projects" className="inline-flex items-center justify-center rounded-lg
+                                                             bg-white text-black font-semibold px-5 py-3
+                                                              hover:bg-gray-200 transition">View Projects</a>
+                            <a href="#contact" className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/10 text-white px-5 py-3 hover:bg-white/20 transition">Get In Touch</a>
+                        </div>
+                    </div>
+
+                </motion.div>
+                <motion.div className="text-center md:text-left"
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true, amount: 0.4 }}>
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">About Me</h3>
+                    <p className="text-gray-300 leading-relaxed text-base sm:text-lg">I'm a Software Developer, Content Creator, and Web Developer - passionate about building fast, resilient
+                        application and sharing coding insights on instagram and youtube.
+                    </p>
+                    <p className="mt-4 text-gray-400 text-base sm:text-lg">I love turning ideas into scalable , user-friendly products that make  an impact</p>
+                </motion.div>
+
+            </div>
+        </section>
     )
 }
-
-export default About
