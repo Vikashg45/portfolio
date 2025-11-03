@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import Astra from "../assets/astra.png";
+import Astra from "../assets/Astra.png";
 
 export default function ContactSection() {
     const canvasRef = useRef(null);
