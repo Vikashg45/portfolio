@@ -1,11 +1,11 @@
 import { title } from "framer-motion/client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import img1 from "../assets/img1.jpg";
-import img2 from "../assets/img2.jpg";
-import img3 from "../assets/img3.jpg";
-import photo1 from "../assets/photo1.jpg";
-import photo2 from "../assets/photo2.png";
+import img1 from "../assets/img1.JPG";
+import img2 from "../assets/img2.JPG";
+import img3 from "../assets/img3.JPG";
+import photo1 from "../assets/photo1.JPG";
+import photo2 from "../assets/photo2.PNG";
 import photo3 from "../assets/photo3.png";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 
