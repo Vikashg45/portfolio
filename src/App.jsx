@@ -11,6 +11,7 @@ import Footer from "./sections/Footer";
 import ParticlesBackground from "./components/ParticlesBackground";
 import CustomCursor from "./components/CustomCursor";
 import IntroAnimation from "./components/IntroAnimation";
+import MusicPlayer from "./components/MusicPlayer";
 
 
 function App() {
@@ -28,11 +29,14 @@ function App() {
           <Home />
           <About />
           <Skills />
+
           <Projects />
           <Experience />
           {/* <Testimonial /> */}
           <Contact />
           <Footer />
+          {/* ✅ Floating Music Player */}
+          <MusicPlayer />
         </div>
       )}
     </>

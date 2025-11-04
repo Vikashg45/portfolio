@@ -90,7 +90,7 @@ export default function Footer() {
                 transition={{ delay: 1.2 }}
                 className="mt-4 text-sm text-gray-400 z-10"
             >
-                © {new Date().getFullYear()} Gaurav Gupta. All rights reserved.
+                © {new Date().getFullYear()} Vikash Gupta. All rights reserved.
             </motion.p>
         </footer>
     );

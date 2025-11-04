@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 export default function ExperienceTimeline() {
     const ref = useRef(null);
@@ -8,8 +8,14 @@ export default function ExperienceTimeline() {
         offset: ["start end", "end start"],
     });
 
-    // Fill height of the timeline (0% → 100%)
-    const fillHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+    // Smooth fill animation for timeline line
+    const smoothProgress = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001,
+    });
+
+    const fillHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
     const experiences = [
         {
@@ -43,16 +49,24 @@ export default function ExperienceTimeline() {
     ];
 
     const cardVariants = {
-        hidden: (isAbove) => ({
+        hidden: (isMobile) => ({
             opacity: 0,
-            y: isAbove ? 100 : -100,
+            x: isMobile ? -80 : 0,
+            y: isMobile ? 0 : 80,
             scale: 0.95,
         }),
         visible: {
             opacity: 1,
+            x: 0,
             y: 0,
             scale: 1,
             transition: { duration: 0.6, ease: "easeOut" },
+        },
+        exit: {
+            opacity: 0,
+            y: -60,
+            scale: 0.9,
+            transition: { duration: 0.4, ease: "easeIn" },
         },
     };
 
@@ -60,39 +74,59 @@ export default function ExperienceTimeline() {
         <section
             id="experience"
             ref={ref}
-            className="relative bg-black text-white py-32 px-4 sm:px-8 overflow-hidden"
+            className="relative bg-black text-white py-24 px-4 sm:px-8 overflow-hidden"
         >
-            <h2 className="text-5xl font-bold text-center mb-24">Experience</h2>
+            <h2 className="text-4xl sm:text-5xl font-bold text-center mb-24">
+                Experience
+            </h2>
 
-            <div className="relative w-full max-w-3xl mx-auto">
-                {/* Timeline line */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 top-0 w-[4px] h-full bg-gray-700 rounded-full">
+            <div className="relative w-full max-w-6xl mx-auto">
+                {/* Timeline Line */}
+                <div className="absolute left-6 sm:left-1/2 transform sm:-translate-x-1/2 top-0 w-[4px] h-full bg-gray-800 rounded-full overflow-hidden">
                     <motion.div
                         className="absolute left-0 top-0 w-full bg-gradient-to-b from-indigo-500 to-pink-500 rounded-full"
                         style={{ height: fillHeight }}
                     />
                 </div>
 
-                <div className="flex flex-col space-y-24">
+                {/* Experience Cards */}
+                <div className="flex flex-col space-y-24 relative">
                     {experiences.map((exp, i) => {
+                        const isMobile =
+                            typeof window !== "undefined" && window.innerWidth < 640;
                         const isLeft = i % 2 === 0;
+
                         return (
                             <motion.div
                                 key={i}
-                                className={`relative flex ${isLeft ? "justify-start" : "justify-end"
-                                    } items-center w-full`}
+                                className={`relative flex flex-col sm:flex-row 
+                ${isLeft
+                                        ? "sm:justify-start sm:text-right"
+                                        : "sm:justify-end sm:text-left"} 
+                items-start sm:items-center`}
                                 initial="hidden"
                                 whileInView="visible"
-                                viewport={{ once: true, amount: 0.3 }}
-                                custom={isLeft}
+                                exit="exit"
+                                viewport={{ once: false, amount: 0.4 }}
                                 variants={cardVariants}
+                                custom={isMobile}
                             >
+                                {/* Connector Dot */}
+                                <div className="absolute left-6 sm:left-1/2 transform sm:-translate-x-1/2 w-6 h-6 bg-white border-4 border-gray-800 rounded-full z-10" />
+
                                 {/* Card */}
                                 <div
-                                    className={`w-[90%] sm:w-[45%] bg-[#0b0e17] border border-gray-800 rounded-2xl p-6 shadow-2xl hover:scale-105 transition-transform duration-500 ${isLeft ? "text-left" : "text-right"
+                                    className={`relative bg-[#0b0e17] border border-gray-800 rounded-2xl p-6 shadow-xl transition-all duration-500 hover:scale-105
+                    w-[85%] sm:w-[45%] md:w-[40%] lg:w-[38%]
+                    ${isMobile ? "ml-12" : ""}
+                    ${isLeft
+                                            ? "sm:ml-auto sm:mr-20 lg:mr-32" // 🧩 More distance for large screens
+                                            : "sm:mr-auto sm:ml-20 lg:ml-32"
                                         }`}
                                 >
-                                    <h3 className="text-xl font-semibold">{exp.title}</h3>
+                                    <h3 className="text-lg sm:text-xl font-semibold">
+                                        {exp.title}
+                                    </h3>
                                     <p className="text-gray-400 text-sm mt-1">
                                         {exp.company} | {exp.year}
                                     </p>
@@ -100,9 +134,6 @@ export default function ExperienceTimeline() {
                                         {exp.description}
                                     </p>
                                 </div>
-
-                                {/* Dot Connector */}
-                                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-gray-800 rounded-full z-10" />
                             </motion.div>
                         );
                     })}

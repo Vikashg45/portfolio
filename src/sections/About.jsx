@@ -29,15 +29,21 @@ export default function About() {
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true, amount: 0.4 }}>
 
-                    <motion.div className="relative w-[160px] has-[160px] md:w-[200px] 
-                                            md:h-[200px] flex-shrink-0 rounded-xl 
-                                            overflow-hidden 
-                                            bg-gradient-to-br from-[#1cd8d2]/20 to-[#302b63]/20 
-                                            border  border-[#1cd8d2]/25 shadow-lg"
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ type: "spring", stiffness: 200, damping: 18 }}>
-                        <img src={V} alt="About Me" className="absolute inset-0" />
+                    <motion.div
+                        className="relative w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]
+             flex-shrink-0 rounded-xl overflow-hidden
+             bg-gradient-to-br from-[#1cd8d2]/30 to-[#302b63]/30
+             border border-[#1cd8d2]/25 shadow-lg mx-auto md:mx-0"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+                    >
+                        <img
+                            src={V}
+                            alt="About Me"
+                            className="w-full h-full object-cover object-top"
+                        />
                     </motion.div>
+
 
                     <div className="flex flex-col justify-center text-center md:text-left">
                         <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent 
