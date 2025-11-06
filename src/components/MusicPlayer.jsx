@@ -18,7 +18,7 @@ export default function MusicPlayer() {
             title: "Honey Singh Album",
             artist: "Yo Yo Honey Singh",
             image:
-                "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02d779fbe3f949261c32100ba7",
+                "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0246a4f62d210c2cb02158eac7",
             embedUrl:
                 "https://open.spotify.com/embed/album/2iPimv2hsVBJZU1fvBfwkB?utm_source=generator",
         },
@@ -136,8 +136,8 @@ export default function MusicPlayer() {
                                 setShowList(false);
                             }}
                             className={`flex items-center justify-between gap-2 p-2 rounded-md cursor-pointer transition-all mb-1 ${index === i
-                                    ? "bg-white/10 border border-green-500/30 shadow-md shadow-green-500/10"
-                                    : "hover:bg-white/5"
+                                ? "bg-white/10 border border-green-500/30 shadow-md shadow-green-500/10"
+                                : "hover:bg-white/5"
                                 }`}
                         >
                             <div className="flex flex-col overflow-hidden">
