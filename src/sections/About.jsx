@@ -15,7 +15,7 @@ export default function About() {
         "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] blur-[100px] opacity-10"
     ];
     return (
-        <section className="min-h-screen w-full flex items-center justify-center relative bg-black text-white overflow-hidden">
+        <section id="about" className="min-h-screen w-full flex items-center justify-center relative bg-black text-white overflow-hidden">
             <div className="absolute inset-0 pointer-events-none">
                 {glows.map((glow, index) => (
                     <div key={index} className={`absolute rounded-full bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2] animate-pulse ${glow}`} />
