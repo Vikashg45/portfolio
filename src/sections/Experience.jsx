@@ -8,7 +8,6 @@ export default function ExperienceTimeline() {
         offset: ["start end", "end start"],
     });
 
-    // Smooth fill animation for timeline line
     const smoothProgress = useSpring(scrollYProgress, {
         stiffness: 100,
         damping: 30,
@@ -32,20 +31,6 @@ export default function ExperienceTimeline() {
             description:
                 "Completed 20+ hours of structured training on Java, OOP, Linux, and DBMS. Applied programming concepts through 30+ hours of hands-on exercises and built small-scale Java applications implementing OOP principles. Gained practical experience in MySQL and Linux-based development environments.",
         },
-        {
-            title: "Web Developer Intern",
-            company: "Mobisoft Technologies",
-            year: "2022 – 2023",
-            description:
-                "Worked on real-world client projects to enhance web performance and user experience. Improved skills in front-end design, back-end integration, and responsive UI development using modern frameworks.",
-        },
-        {
-            title: "Graduate Engineer",
-            company: "HCL Technologies",
-            year: "2024 – 2025",
-            description:
-                "Built frontend interfaces for GenAI-powered enterprise applications using Next.js and TypeScript. Collaborated with global teams to design scalable solutions for automated data and report processing systems.",
-        },
     ];
 
     const cardVariants = {
@@ -62,12 +47,6 @@ export default function ExperienceTimeline() {
             scale: 1,
             transition: { duration: 0.6, ease: "easeOut" },
         },
-        exit: {
-            opacity: 0,
-            y: -60,
-            scale: 0.9,
-            transition: { duration: 0.4, ease: "easeIn" },
-        },
     };
 
     return (
@@ -76,63 +55,64 @@ export default function ExperienceTimeline() {
             ref={ref}
             className="relative bg-black text-white py-24 px-4 sm:px-8 overflow-hidden"
         >
-            <h2 className="text-4xl sm:text-5xl font-bold text-center mb-24">
+            <h2 className="text-4xl sm:text-5xl font-bold text-center mb-20">
                 Experience
             </h2>
 
             <div className="relative w-full max-w-6xl mx-auto">
-                {/* Timeline Line */}
-                <div className="absolute left-6 sm:left-1/2 transform sm:-translate-x-1/2 top-0 w-[4px] h-full bg-gray-800 rounded-full overflow-hidden">
+                {/* Timeline line */}
+                <div className="absolute left-1/2 top-0 transform -translate-x-1/2 w-[3px] h-full bg-gray-800 rounded-full overflow-hidden">
                     <motion.div
                         className="absolute left-0 top-0 w-full bg-gradient-to-b from-indigo-500 to-pink-500 rounded-full"
                         style={{ height: fillHeight }}
                     />
                 </div>
 
-                {/* Experience Cards */}
-                <div className="flex flex-col space-y-24 relative">
+                {/* Timeline Cards */}
+                <div className="flex flex-col gap-16 sm:gap-20 md:gap-24 relative">
                     {experiences.map((exp, i) => {
-                        const isMobile =
-                            typeof window !== "undefined" && window.innerWidth < 640;
                         const isLeft = i % 2 === 0;
 
                         return (
                             <motion.div
                                 key={i}
-                                className={`relative flex flex-col sm:flex-row 
-                ${isLeft
-                                        ? "sm:justify-start sm:text-right"
-                                        : "sm:justify-end sm:text-left"} 
-                items-start sm:items-center`}
+                                className={`relative flex flex-col sm:flex-row items-center ${isLeft ? "sm:justify-end" : "sm:justify-start"
+                                    }`}
                                 initial="hidden"
                                 whileInView="visible"
-                                exit="exit"
                                 viewport={{ once: false, amount: 0.4 }}
                                 variants={cardVariants}
-                                custom={isMobile}
                             >
                                 {/* Connector Dot */}
-                                <div className="absolute left-6 sm:left-1/2 transform sm:-translate-x-1/2 w-6 h-6 bg-white border-4 border-gray-800 rounded-full z-10" />
+                                <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 bg-white border-4 border-gray-800 rounded-full z-10" />
 
                                 {/* Card */}
                                 <div
-                                    className={`relative bg-[#0b0e17] border border-gray-800 rounded-2xl p-6 shadow-xl transition-all duration-500 hover:scale-105
-                    w-[85%] sm:w-[45%] md:w-[40%] lg:w-[38%]
-                    ${isMobile ? "ml-12" : ""}
-                    ${isLeft
-                                            ? "sm:ml-auto sm:mr-20 lg:mr-32" // 🧩 More distance for large screens
-                                            : "sm:mr-auto sm:ml-20 lg:ml-32"
+                                    className={`relative bg-gradient-to-br from-[#111827] via-[#0b0e17] to-[#0f172a]
+                  border border-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-green-500/10
+                  transition-all duration-500 hover:scale-[1.02]
+                  w-[88%] sm:w-[43%] md:w-[40%] lg:w-[38%]
+                  ${isLeft
+                                            ? "sm:mr-[calc(50%+1.5rem)] text-right"
+                                            : "sm:ml-[calc(50%+1.5rem)] text-left"
                                         }`}
                                 >
-                                    <h3 className="text-lg sm:text-xl font-semibold">
+                                    {/* Title */}
+                                    <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-white mb-1">
                                         {exp.title}
                                     </h3>
-                                    <p className="text-gray-400 text-sm mt-1">
-                                        {exp.company} | {exp.year}
+
+                                    {/* Company + Year */}
+                                    <p className="text-sm text-gray-400 font-medium mb-3">
+                                        {exp.company}{" "}
+                                        <span className="text-gray-500">| {exp.year}</span>
                                     </p>
-                                    <p className="mt-3 text-gray-300 text-sm leading-relaxed">
+
+                                    {/* Description */}
+                                    <p className="text-[15px] text-gray-300 leading-relaxed -tracking-normal text-justify">
                                         {exp.description}
                                     </p>
+
                                 </div>
                             </motion.div>
                         );

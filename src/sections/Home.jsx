@@ -116,7 +116,7 @@ export default function Home() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.8, duration: 0.8 }}>
-                            <a href="#project"
+                            <a href="#projects"
                                 className="px-6 py-3 rounded-full font-medium text-lg text-white bg-gradient-to-r from-[#1cd8d2] via-[#00bf8f] to-[#302b63]
                             shadow-lg hover:scale-105 transition-all">View My Work</a>
                             <a href="/Resume.docx"
