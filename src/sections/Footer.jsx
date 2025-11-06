@@ -1,6 +1,6 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
-import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6"; // React Icons
+import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
     const controls = useAnimation();
@@ -48,7 +48,7 @@ export default function Footer() {
                 className="flex items-center justify-center space-x-6 text-gray-300 z-10"
             >
                 <a
-                    href="https://twitter.com/"
+                    href="https://x.com/Universe45_vg?t=sSowjow515xrAiLp5l4IHg&s=09"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-blue-400 transition text-2xl"
@@ -56,7 +56,7 @@ export default function Footer() {
                     <FaXTwitter />
                 </a>
                 <a
-                    href="https://linkedin.com/"
+                    href="https://linkedin.com/in/vikash-gupta45"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-blue-500 transition text-2xl"
@@ -64,7 +64,7 @@ export default function Footer() {
                     <FaLinkedin />
                 </a>
                 <a
-                    href="https://github.com/"
+                    href="https://github.com/Vikashg45/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-gray-400 transition text-2xl"

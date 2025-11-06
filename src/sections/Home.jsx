@@ -5,8 +5,8 @@ import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import avator from '../assets/avator.png'
 
 const socials = [
-    { Icon: FaXTwitter, label: "X", href: "https:" },
-    { Icon: FaLinkedin, label: "LinkedIn", href: "https:" },
+    { Icon: FaXTwitter, label: "X", href: "https://x.com/Universe45_vg?t=sSowjow515xrAiLp5l4IHg&s=09" },
+    { Icon: FaLinkedin, label: "LinkedIn", href: "https://linkedin.com/in/vikash-gupta45" },
     { Icon: FaGithub, label: "Github", href: "https://github.com/Vikashg45/" }
 ]
 
